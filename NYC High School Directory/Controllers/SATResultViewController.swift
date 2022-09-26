@@ -35,7 +35,8 @@ extension SATResultViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.satResultCellView, for: indexPath) as! SatResultCellView
 		guard let keyValuePair = viewModel.dataDictionary.first(where: { $1.displayIndex == indexPath.row }) else {
-			fatalError()
+			noDataLabel.isHidden = false
+			return UITableViewCell()
 		}
 		cell.configure(keyValuePair.key, keyValuePair.value.value)
 		return cell
